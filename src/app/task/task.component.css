@@ -1,0 +1,13 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+  }
+  
+  input.form-control {
+    margin-bottom: 15px;
+  }
+  
+  table {
+    text-align: left;
+  }
+  

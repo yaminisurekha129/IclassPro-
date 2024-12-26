@@ -1,0 +1,84 @@
+<!-- 
+<div class="container mt-4">
+ 
+  <div class="form-group">
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="filterTasks()"
+      placeholder="Search for tasks"
+    />
+  </div>
+
+
+  <div *ngIf="filteredTasks.length > 0">
+    <div *ngFor="let userTasks of filteredTasks">
+      <h3>{{ userTasks.user }}'s Tasks</h3>
+      <div *ngFor="let task of userTasks.tasks" class="task-item">
+        <h4>Task ID: {{ task.task_id }}</h4>
+        <p>{{ task.task_name }}</p>
+      </div>
+    </div>
+  </div>
+  
+
+  <div *ngIf="filteredTasks.length === 0">
+    <p>No tasks found.</p>
+  </div>
+</div> -->
+
+
+<div class="container mt-5">
+  <h2 class="text-center">Task List</h2>
+
+  <!-- Current User's Tasks -->
+  <div *ngIf="tasks">
+    <h4>{{ tasks.user }}'s Tasks</h4>
+    <table class="table table-striped table-bordered text-center">
+      <thead class="table-dark">
+        <tr>
+          <th>Task ID</th>
+
+          <th>Task Name</th>
+          <th>User</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of tasks.tasks">
+          <td>{{ task.task_id }}</td>
+          <td>{{ task.task_name }}</td>
+          <td>{{ tasks.user }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Reported Users' Tasks -->
+    <h4 class="mt-4">Reported User's Tasks</h4>
+    <div *ngIf="tasks.reported_by.length > 0; else noReportedTasks">
+      <div *ngFor="let report of tasks.reported_by" class="mb-4">
+        <h5>{{ report.user }}</h5>
+        <table class="table table-striped table-bordered text-center">
+          <thead class="table-info">
+            <tr>
+              <th>Task ID</th>
+              <th>Task Name</th>
+              <th>User</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let task of report.tasks">
+              <td>{{ task.task_id }}</td>
+              <td>{{ task.task_name }}</td>
+              <td>{{ report.user }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <ng-template #noReportedTasks>
+      <p>No tasks found for reported users.</p>
+    </ng-template>
+  </div>
+</div>
+

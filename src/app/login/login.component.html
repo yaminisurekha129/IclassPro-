@@ -1,0 +1,38 @@
+
+
+<div class="container mb-5">
+    <form method="POST" [formGroup]="form" (ngSubmit)="onSubmit()" class="form-group border border-dashed p-5 mt-5">
+      <p class="pt-3 text-center h3">Login</p>
+  
+  
+      <input formControlName="email" type="email" placeholder="Email" class="form-control mb-3">
+      <div *ngIf="email.invalid && (email.touched || formSubmitted)" class="text-danger">
+        <small *ngIf="email.errors?.['required']">Email is required.</small>
+        <small *ngIf="email.errors?.['email']">Please enter a valid email.</small>
+      </div>
+    
+      <input formControlName="password" type="password" placeholder="Password" class="mb-2 form-control">
+      <div *ngIf="password.invalid && (password.touched || formSubmitted)" class="text-danger">
+        <small *ngIf="password.errors?.['required']">Password is required.</small>
+        <small *ngIf="password.errors?.['minlength']">Password must be at least 6 characters long.</small>
+      </div>
+    
+      
+      <div>
+        <button type="submit" class="mb-3 mt-2 form-control bg-primary text-white" [disabled]="form.invalid">Login</button>
+      </div>
+    
+      <p class="text-center">Don't have an account? 
+          
+            <a routerLink="/signup">signup here</a>
+          
+      </p>
+  
+     
+    </form>
+  
+    
+  </div>
+  
+  
+  

@@ -1,40 +1,33 @@
-<!-- 
-<div class="container mt-4">
- 
-  <div class="form-group">
-    <input
-      type="text"
-      class="form-control"
-      [(ngModel)]="searchTerm"
-      (ngModelChange)="filterTasks()"
-      placeholder="Search for tasks"
-    />
-  </div>
 
-
-  <div *ngIf="filteredTasks.length > 0">
-    <div *ngFor="let userTasks of filteredTasks">
-      <h3>{{ userTasks.user }}'s Tasks</h3>
-      <div *ngFor="let task of userTasks.tasks" class="task-item">
-        <h4>Task ID: {{ task.task_id }}</h4>
-        <p>{{ task.task_name }}</p>
-      </div>
-    </div>
-  </div>
-  
-
-  <div *ngIf="filteredTasks.length === 0">
-    <p>No tasks found.</p>
-  </div>
-</div> -->
 
 
 <div class="container mt-5">
   <h2 class="text-center">Task List</h2>
 
-  <!-- Current User's Tasks -->
+
   <div *ngIf="tasks">
-    <h4>{{ tasks.user }}'s Tasks</h4>
+  
+    <div>
+      <!-- User Dropdown -->
+      <label for="user">Select User:</label>
+      <select id="user" [(ngModel)]="selectedUser">
+        <option *ngFor="let user of Allusers" [value]="user.id">{{ user.id }}</option>
+      </select>
+    </div>
+
+    
+    
+    <div>
+      <!-- Task Dropdown -->
+      <label for="task">Select Task:</label>
+      <select id="task" [(ngModel)]="selectedTask ">
+        <option  *ngFor="let task of Alltasks" [value]="task.id">{{ task.name }}</option>
+      </select>
+    </div>
+
+    <button class="form-control w-50 bg-success" (click)="addTask()">save</button>
+
+    <h4 class="mt-5">{{ tasks.user }}'s Tasks</h4>
     <table class="table table-striped table-bordered text-center">
       <thead class="table-dark">
         <tr>
@@ -50,8 +43,12 @@
           <td>{{ task.task_name }}</td>
           <td>{{ tasks.user }}</td>
         </tr>
+       
       </tbody>
+
+   
     </table>
+
 
     <!-- Reported Users' Tasks -->
     <h4 class="mt-4">Reported User's Tasks</h4>
@@ -81,4 +78,5 @@
     </ng-template>
   </div>
 </div>
+
 
